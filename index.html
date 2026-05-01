@@ -22,7 +22,7 @@
                     colors: {
                         surface: '#111111',     // Asphalt/Grill Black
                         ink: '#FAFAFA',         // White text
-                        gold: '#FFB800',        // Fries Yellow (Passend zur Speisekarte)
+                        gold: '#FFB800',        // Fries Yellow (Passend zur Speisekarte & Curry)
                         heat: '#E63946',        // Ketchup/Fire Red
                     }
                 }
@@ -73,12 +73,12 @@
 <body class="selection:bg-gold selection:text-surface relative">
 
     <div id="loader" class="fixed inset-0 z-[999] bg-surface flex items-center justify-center overflow-hidden">
-        <h2 id="loader-logo" class="font-display text-gold text-5xl md:text-8xl tracking-wider opacity-0 scale-75">Friedhelm's Imbiß</h2>
+        <img src="Unbenannt-8.webp" alt="Friedhelm's Imbiß Currywurst Logo" id="loader-logo" class="h-40 md:h-64 w-auto object-contain opacity-0 scale-75">
     </div>
 
     <header class="fixed top-0 left-0 w-full z-50 p-4 md:p-6 flex justify-between items-center pointer-events-none drop-shadow-xl hero-anim opacity-0">
         <div class="pointer-events-auto">
-            <h1 class="font-display text-gold text-3xl md:text-4xl tracking-wider hover:scale-105 transition-transform duration-300 cursor-pointer">Friedhelm's</h1>
+            <img src="Unbenannt-8.webp" alt="Friedhelm's Imbiß Currywurst Logo" class="h-20 md:h-24 w-auto object-contain hover:scale-105 transition-transform duration-300 cursor-pointer">
         </div>
         <a href="#location" class="pointer-events-auto bg-ink text-surface font-sans font-bold text-xs uppercase px-4 py-2 rounded-full hover:bg-gold transition-colors shadow-lg">
             Anfahrt & Kontakt
@@ -308,7 +308,7 @@
                                 <p class="font-sans font-bold uppercase text-surface/60 text-sm">Telefon & Vorbestellung</p>
                                 <a href="tel:+4959757771" class="font-sans font-bold text-3xl hover:text-heat transition-colors">
                                     05975 / 7771
-                                </a>
+                                }</a>
                             </div>
                             <div class="mt-2">
                                 <p class="font-sans font-bold uppercase text-surface/60 text-sm mb-2">Öffnungszeiten</p>
@@ -340,7 +340,8 @@
                 </div>
 
                 <div class="relative z-10 max-w-4xl mx-auto px-4 flex flex-col items-center">
-                    <h2 class="font-display text-gold text-5xl md:text-7xl mb-8 drop-shadow-2xl hover:scale-105 transition-transform duration-300">Friedhelm's Imbiß</h2>
+                    <img src="Unbenannt-8.webp" alt="Friedhelm's Imbiß Currywurst Logo" class="h-40 md:h-52 w-auto object-contain mb-8 drop-shadow-2xl hover:scale-105 transition-transform duration-300">
+                    
                     <div class="flex gap-4 items-center mb-8">
                         <div class="h-px w-12 bg-ink/30"></div>
                         <p class="font-sans font-bold text-sm text-ink/80 uppercase tracking-widest text-center">
@@ -377,7 +378,7 @@
             <h2 class="font-display text-6xl md:text-8xl text-gold mb-8 uppercase">Impressum</h2>
             <div class="font-sans text-ink/80 space-y-6 text-sm md:text-base leading-relaxed break-words">
                 <p><strong>Angaben gemäß § 5 TMG</strong><br>
-                Friedhelm's Imbiß<br>
+                Friedhelm's Imbiß TMG<br>
                 [Inhaber Name]<br>
                 Rheiner Str. 18<br>
                 48432 Rheine<br>
@@ -413,7 +414,7 @@
                 <p>Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung unserer Website – hierzu müssen die Server-Log-Files erfasst werden. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p>
                 <h3 class="text-xl text-ink font-bold mt-8">Verantwortliche Stelle</h3>
                 <p>Die verantwortliche Stelle für die Datenverarbeitung im Sinne der Datenschutzgesetze ist:<br>
-                Friedhelm's Imbiß<br>
+                Friedhelm's Imbiß DSGVO<br>
                 [Inhaber Name]<br>
                 Rheiner Str. 18<br>
                 48432 Rheine<br>
@@ -472,6 +473,7 @@
             }
         });
 
+        // Logo im Loader poppt auf (jetzt mit img-Tag-Unterstützung)
         introTl.to("#loader-logo", { 
             opacity: 1, 
             scale: 1, 
@@ -480,6 +482,7 @@
             delay: 0.3
         });
 
+        // Logo im Loader schießt hoch
         introTl.to("#loader-logo", { 
             yPercent: -150, 
             opacity: 0, 
@@ -487,12 +490,14 @@
             ease: "power3.in" 
         }, "+=0.4");
 
+        // Vorhang zieht hoch
         introTl.to("#loader", { 
             yPercent: -100, 
             duration: 0.9, 
             ease: "power4.inOut" 
         }, "-=0.3");
 
+        // Text & UI faden ein
         introTl.fromTo(".hero-anim", 
             { y: 50, opacity: 0 }, 
             { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" }, 

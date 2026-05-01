@@ -1,1 +1,547 @@
+<!DOCTYPE html>
+<html lang="de" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friedhelm's Imbiß | Rheine-Mesum</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Bebas Neue', 'sans-serif'],
+                    },
+                    colors: {
+                        surface: '#111111',     // Asphalt/Grill Black
+                        ink: '#FAFAFA',         // White text
+                        gold: '#FFB800',        // Fries Yellow (Passend zur Speisekarte)
+                        heat: '#E63946',        // Ketchup/Fire Red
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.ink');
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { display: none; }
+        * { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Lenis Native Smooth Scroll */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+        /* Pulsing Status Dot */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+        }
+        .status-dot {
+            background-color: #4CAF50;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Brutalist Hover Effect */
+        .btn-brutal {
+            transition: all 0.2s ease;
+            box-shadow: 4px 4px 0px theme('colors.heat');
+        }
+        .btn-brutal:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px theme('colors.heat');
+        }
+        .btn-brutal:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px theme('colors.heat');
+        }
+    </style>
+</head>
+<body class="selection:bg-gold selection:text-surface relative">
+
+    <div id="loader" class="fixed inset-0 z-[999] bg-surface flex items-center justify-center overflow-hidden">
+        <h2 id="loader-logo" class="font-display text-gold text-5xl md:text-8xl tracking-wider opacity-0 scale-75">Friedhelm's Imbiß</h2>
+    </div>
+
+    <header class="fixed top-0 left-0 w-full z-50 p-4 md:p-6 flex justify-between items-center pointer-events-none drop-shadow-xl hero-anim opacity-0">
+        <div class="pointer-events-auto">
+            <h1 class="font-display text-gold text-3xl md:text-4xl tracking-wider hover:scale-105 transition-transform duration-300 cursor-pointer">Friedhelm's</h1>
+        </div>
+        <a href="#location" class="pointer-events-auto bg-ink text-surface font-sans font-bold text-xs uppercase px-4 py-2 rounded-full hover:bg-gold transition-colors shadow-lg">
+            Anfahrt & Kontakt
+        </a>
+    </header>
+
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <section class="relative w-full min-h-[90svh] flex flex-col justify-end bg-surface">
+                <div class="absolute inset-0 overflow-hidden">
+                    <img src="https://fleischerei-senz.de/wp-content/uploads/2022/08/Mantaplatte-mit-Mayo.jpg" 
+                         alt="Authentische Manta Platte Nahaufnahme (Currywurst mit Pommes)" 
+                         class="w-full h-full object-cover opacity-80 scale-105" id="hero-img" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent"></div>
+                </div>
+
+                <div class="relative z-10 px-4 md:px-8 pb-40 md:pb-32 max-w-7xl mx-auto w-full">
+                    <h1 class="font-display text-7xl md:text-[12rem] leading-[0.85] text-ink uppercase tracking-tight mb-4 text-glow hero-anim opacity-0">
+                        Kult.<br>
+                        <span class="text-gold">Schnitzel.</span><br>
+                        Mesum.
+                    </h1>
+                    <p class="font-sans font-medium text-lg md:text-2xl text-ink/90 max-w-xl hero-anim opacity-0">
+                        Friedhelm's Imbiß. Riesige Schnitzelauswahl, echte Currywurst und legendäre Pommes. Ehrlich und lecker seit Generationen.
+                    </p>
+                </div>
+
+                <div class="absolute bottom-0 left-0 w-full translate-y-1/2 px-4 md:px-8 z-20">
+                    <div class="max-w-7xl mx-auto bg-ink text-surface p-4 md:p-6 rounded-xl shadow-2xl flex flex-col md:flex-row gap-4 md:gap-8 items-start md:items-center justify-between hero-anim opacity-0">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 status-dot"></div>
+                            <div>
+                                <p class="font-sans font-bold text-sm uppercase text-surface/50">Di - So Geöffnet (Mo Ruhetag)</p>
+                                <p class="font-sans font-bold text-lg md:text-xl">Mittag & Abendessen</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:block w-px h-12 bg-surface/10"></div>
+                        <div>
+                            <p class="font-sans font-bold text-sm uppercase text-surface/50">Standort</p>
+                            <p class="font-sans font-bold text-lg md:text-xl">Rheiner Str. 18, Rheine-Mesum</p>
+                        </div>
+                        <div class="w-full md:w-auto mt-2 md:mt-0">
+                            <a href="#menu" class="btn-brutal block w-full text-center bg-gold text-surface font-display text-2xl px-8 py-3 rounded-md">
+                                Speisekarte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="menu" class="relative w-full bg-surface pt-40 pb-20 md:pt-48 md:pb-32 px-4 md:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <div class="mb-16 md:mb-24 text-center reveal-up">
+                        <h2 class="font-display text-5xl md:text-8xl text-ink">Das Menü</h2>
+                        <div class="w-24 h-2 bg-heat mx-auto mt-4"></div>
+                        <p class="mt-4 text-ink/60 font-sans">Auszug aus unserer Karte (Alle Gerichte auch außer Haus)</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24">
+                        <div class="flex flex-col gap-16">
+                            <div class="reveal-up">
+                                <h3 class="font-display text-4xl text-heat mb-8 border-b-2 border-surface/20 pb-2">Vom Grill & Wurst</h3>
+                                <div class="flex flex-col gap-6">
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-heat transition-colors">Bratwurst</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">2,30 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-heat transition-colors">Currywurst</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">2,50 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-heat transition-colors">Zigeuner- / Jägerwurst</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">2,60 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-heat transition-colors">1/2 Hähnchen</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">3,80 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-heat transition-colors">Frikadelle</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">2,50 €</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="reveal-up">
+                                <h3 class="font-display text-4xl text-gold mb-8 border-b-2 border-surface/20 pb-2">Fritten & Beilagen</h3>
+                                <div class="flex flex-col gap-6">
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-gold transition-colors">Pommes Frites klein</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">2,20 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-gold transition-colors">Pommes Frites mittel</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">3,40 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-gold transition-colors">Pommes Frites riesen</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">4,20 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-gold transition-colors">Kart. Kroketten (5 Stück)</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">2,20 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-gold transition-colors">Mayo. / Ketchup</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">0,50 €</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-16">
+                            <div class="reveal-up">
+                                <h3 class="font-display text-4xl text-ink mb-8 border-b-2 border-surface/20 pb-2">Unsere Schnitzel</h3>
+                                <div class="flex flex-col gap-6">
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-white transition-colors">Schnitzel</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">5,00 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-white transition-colors">Zig.- / Jägerschnitzel</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">6,30 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-white transition-colors">Champignonschnitzel</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">6,80 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-white transition-colors">Schnitzel "Amerikanisch"</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">7,00 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-white transition-colors">Hawaiischnitzel</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">7,00 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-white transition-colors">Spargelrahmschnitzel</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">7,00 €</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="reveal-up">
+                                <h3 class="font-display text-4xl text-ink mb-8 border-b-2 border-surface/20 pb-2">Snacks & Mehr</h3>
+                                <div class="flex flex-col gap-6">
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-gold transition-colors">Frühlingsrolle</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">2,50 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-gold transition-colors">Hähnchencrossies</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">3,60 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-gold transition-colors">Bamischeibe</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">1,80 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="group cursor-pointer">
+                                        <div class="flex justify-between items-baseline border-b border-ink/10 pb-2 mb-1">
+                                            <h4 class="font-sans font-bold text-xl md:text-2xl text-ink group-hover:text-gold transition-colors">Fischfilet</h4>
+                                            <span class="font-sans font-bold text-xl text-ink/80">2,80 €</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="location" class="relative w-full bg-gold text-surface py-20 md:py-32 px-4 md:px-8 overflow-hidden">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20 relative z-10">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="font-display text-7xl md:text-[8rem] leading-none text-surface mb-6 uppercase tracking-tight">
+                            Hier <br>Findest du uns.
+                        </h2>
+                        <p class="font-sans font-bold text-xl md:text-2xl mb-8 max-w-md">
+                            Komm rum oder ruf an für Bestellungen außer Haus. Selbstverständlich können Sie auch telefonisch vorbestellen.
+                        </p>
+                        <div class="flex flex-col gap-6 mb-10">
+                            <div>
+                                <p class="font-sans font-bold uppercase text-surface/60 text-sm">Adresse</p>
+                                <p class="font-sans font-bold text-2xl">Rheiner Str. 18<br>48432 Rheine-Mesum, Deutschland</p>
+                            </div>
+                            <div>
+                                <p class="font-sans font-bold uppercase text-surface/60 text-sm">Telefon & Vorbestellung</p>
+                                <a href="tel:+4959757771" class="font-sans font-bold text-3xl hover:text-heat transition-colors">
+                                    05975 / 7771
+                                </a>
+                            </div>
+                            <div class="mt-2">
+                                <p class="font-sans font-bold uppercase text-surface/60 text-sm mb-2">Öffnungszeiten</p>
+                                <ul class="font-sans font-bold text-lg flex flex-col gap-1">
+                                    <li class="flex justify-between max-w-sm border-b border-surface/20 pb-1"><span>Dienstag - Samstag</span> <span>11:00–14:30, 17:00–22:00</span></li>
+                                    <li class="flex justify-between max-w-sm border-b border-surface/20 pb-1 pt-1"><span>Sonntag & Feiertag</span> <span>17:00–22:00</span></li>
+                                    <li class="flex justify-between max-w-sm border-b border-surface/20 pb-1 pt-1 text-surface/60"><span>Montag</span> <span>Ruhetag</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="https://maps.google.com/?q=Rheiner+Str.+18,+48432+Rheine" target="_blank" class="inline-block bg-surface text-ink font-display text-3xl px-10 py-4 rounded-md hover:bg-heat hover:text-ink transition-colors btn-brutal">
+                            Route auf Google Maps
+                        </a>
+                    </div>
+                    <div class="w-full md:w-1/2 aspect-square md:aspect-[4/3] rounded-xl overflow-hidden border-8 border-surface shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1586816001966-79b736744398?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Saftiger Burger mit Pommes in vollen Farben" 
+                             class="w-full h-full object-cover transition-all duration-500" />
+                    </div>
+                </div>
+            </section>
+
+            <footer class="relative w-full bg-surface py-24 border-t border-ink/10 overflow-hidden text-center">
+                <div class="absolute inset-0">
+                    <img src="https://c8.alamy.com/compde/2r5htd3/nahaufnahme-von-pommes-frites-kartoffeln-in-kochendem-heissem-ol-in-einer-fritteuse-zu-hause-braten-pommes-frites-junk-food-konzept-hausgemachte-frittierte-pommes-frites-sele-2r5htd3.jpg" 
+                         alt="Pommes Frites Nahaufnahme in bubbling Öl" 
+                         class="w-full h-full object-cover opacity-30" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-surface"></div>
+                </div>
+
+                <div class="relative z-10 max-w-4xl mx-auto px-4 flex flex-col items-center">
+                    <h2 class="font-display text-gold text-5xl md:text-7xl mb-8 drop-shadow-2xl hover:scale-105 transition-transform duration-300">Friedhelm's Imbiß</h2>
+                    <div class="flex gap-4 items-center mb-8">
+                        <div class="h-px w-12 bg-ink/30"></div>
+                        <p class="font-sans font-bold text-sm text-ink/80 uppercase tracking-widest text-center">
+                            Rheiner Str. 18 <br class="md:hidden"> 48432 Rheine-Mesum
+                        </p>
+                        <div class="h-px w-12 bg-ink/30"></div>
+                    </div>
+                    <div class="flex gap-4 md:gap-8 justify-center items-center">
+                        <button onclick="openModal('modal-impressum')" class="font-sans font-bold text-xs text-ink/60 uppercase tracking-widest hover:text-gold transition-colors">
+                            Impressum
+                        </button>
+                        <span class="text-ink/20">•</span>
+                        <button onclick="openModal('modal-datenschutz')" class="font-sans font-bold text-xs text-ink/60 uppercase tracking-widest hover:text-gold transition-colors">
+                            Datenschutz
+                        </button>
+                    </div>
+                    <p class="font-sans font-medium text-[10px] text-ink/30 uppercase tracking-widest mt-8">
+                        © 2026 Friedhelm's Imbiß | Rheine-Mesum
+                    </p>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <div id="modal-impressum" class="fixed inset-0 z-[100] h-[100dvh] w-full bg-surface text-ink translate-y-full transition-transform duration-500 ease-in-out overflow-y-auto" data-lenis-prevent>
+        <div class="p-6 md:p-16 max-w-4xl mx-auto pb-32 block">
+            <div class="flex justify-end mb-12">
+                <button onclick="closeModal('modal-impressum')" class="flex items-center gap-2 text-ink hover:text-heat transition-colors group">
+                    <span class="font-display text-2xl uppercase tracking-widest">Schließen</span>
+                    <svg class="w-8 h-8 group-hover:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <h2 class="font-display text-6xl md:text-8xl text-gold mb-8 uppercase">Impressum</h2>
+            <div class="font-sans text-ink/80 space-y-6 text-sm md:text-base leading-relaxed break-words">
+                <p><strong>Angaben gemäß § 5 TMG</strong><br>
+                Friedhelm's Imbiß<br>
+                [Inhaber Name]<br>
+                Rheiner Str. 18<br>
+                48432 Rheine<br>
+                Deutschland</p>
+                <p><strong>Kontakt</strong><br>
+                Telefon: 05975 / 7771<br>
+                E-Mail: [E-Mail Adresse eintragen, z.B. info@...]</p>
+                <p><strong>Umsatzsteuer-ID</strong><br>
+                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+                [Umsatzsteuer-ID eintragen]</p>
+                <p><strong>Verbraucherstreitbeilegung/Universalschlichtungsstelle</strong><br>
+                Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-datenschutz" class="fixed inset-0 z-[100] h-[100dvh] w-full bg-surface text-ink translate-y-full transition-transform duration-500 ease-in-out overflow-y-auto" data-lenis-prevent>
+        <div class="p-6 md:p-16 max-w-4xl mx-auto pb-32 block">
+            <div class="flex justify-end mb-12">
+                <button onclick="closeModal('modal-datenschutz')" class="flex items-center gap-2 text-ink hover:text-heat transition-colors group">
+                    <span class="font-display text-2xl uppercase tracking-widest">Schließen</span>
+                    <svg class="w-8 h-8 group-hover:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <h2 class="font-display text-6xl md:text-8xl text-gold mb-8 uppercase">Datenschutz</h2>
+            <div class="font-sans text-ink/80 space-y-6 text-sm md:text-base leading-relaxed break-words">
+                <p>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Diese Website ist eine reine Informationsseite. Wir erheben über diese Website <strong>keine</strong> personenbezogenen Daten wie Namen oder E-Mail-Adressen, da wir kein Kontaktformular oder ähnliche Funktionen nutzen.</p>
+                <h3 class="text-xl text-ink font-bold mt-8">Keine Cookies und kein Tracking</h3>
+                <p>Diese Website verwendet <strong>keine</strong> Cookies, Analyse-Tools (wie Google Analytics) oder andere Tracking-Technologien. Ihr Surfverhalten wird von uns nicht aufgezeichnet oder ausgewertet.</p>
+                <h3 class="text-xl text-ink font-bold mt-8">Hosting und Server-Logfiles</h3>
+                <p>Wir hosten unsere Website bei GitHub Pages (GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA). <br>
+                Wenn Sie unsere Website besuchen, erfasst der Hoster (GitHub) technisch bedingt automatisch Daten, die Ihr Browser übermittelt, und speichert diese in sogenannten Server-Logfiles. Dies sind: Browsertyp/-version, verwendetes Betriebssystem, Referrer-URL, Uhrzeit der Serveranfrage sowie Ihre IP-Adresse.</p>
+                <p>Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung unserer Website – hierzu müssen die Server-Log-Files erfasst werden. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p>
+                <h3 class="text-xl text-ink font-bold mt-8">Verantwortliche Stelle</h3>
+                <p>Die verantwortliche Stelle für die Datenverarbeitung im Sinne der Datenschutzgesetze ist:<br>
+                Friedhelm's Imbiß<br>
+                [Inhaber Name]<br>
+                Rheiner Str. 18<br>
+                48432 Rheine<br>
+                Telefon: 05975 / 7771</p>
+                <h3 class="text-xl text-ink font-bold mt-8">Kontaktaufnahme per Telefon</h3>
+                <p>Wenn Sie uns anrufen, um eine Bestellung aufzugeben, verarbeiten wir Ihre mitgeteilten Daten (wie z.B. Ihre Telefonnummer oder Ihren Namen) ausschließlich zur Bearbeitung und Abwicklung Ihrer Bestellung. Nach Abschluss des Vorgangs werden diese Daten gelöscht, sofern keine gesetzlichen Aufbewahrungsfristen bestehen.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        
+        if (window.location.hash) {
+            window.history.replaceState('', document.title, window.location.pathname + window.location.search);
+        }
+        
+        window.scrollTo(0, 0);
+
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 10);
+
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+        });
+
+        lenis.stop();
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time)=>{ lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+
+        const introTl = gsap.timeline({
+            onComplete: () => {
+                document.getElementById('loader').style.display = 'none';
+                lenis.start();
+                ScrollTrigger.refresh();
+            }
+        });
+
+        introTl.to("#loader-logo", { 
+            opacity: 1, 
+            scale: 1, 
+            duration: 1.2, 
+            ease: "expo.out",
+            delay: 0.3
+        });
+
+        introTl.to("#loader-logo", { 
+            yPercent: -150, 
+            opacity: 0, 
+            duration: 0.7, 
+            ease: "power3.in" 
+        }, "+=0.4");
+
+        introTl.to("#loader", { 
+            yPercent: -100, 
+            duration: 0.9, 
+            ease: "power4.inOut" 
+        }, "-=0.3");
+
+        introTl.fromTo(".hero-anim", 
+            { y: 50, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" }, 
+            "-=0.4"
+        );
+
+        let mm = gsap.matchMedia();
+        mm.add("(min-width: 768px)", () => {
+            gsap.to("#hero-img", {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "section",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+        const revealElements = gsap.utils.toArray('.reveal-up');
+        revealElements.forEach(el => {
+            gsap.from(el, {
+                y: 40,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('translate-y-full');
+            lenis.stop();
+            document.body.style.overflow = 'hidden';
+            modal.scrollTop = 0;
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('translate-y-full');
+            lenis.start();
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+</html>
